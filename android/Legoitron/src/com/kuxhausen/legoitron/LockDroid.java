@@ -11,7 +11,9 @@ import android.widget.Button;
 
 public class LockDroid extends MINDdroid implements OnClickListener{
 
-	Button unlockButton;
+	Button unlockButton, lockButton;
+    public static final int ACTION_UNLOCK = 0;
+    public static final int ACTION_LOCK = 1;
 	
     /**
      * Called when the activity is first created. Inititializes all the
@@ -24,6 +26,8 @@ public class LockDroid extends MINDdroid implements OnClickListener{
         
         unlockButton = (Button) findViewById(R.id.unlockButton);
         unlockButton.setOnClickListener(this);
+        lockButton = (Button) findViewById(R.id.lockButton);
+        lockButton.setOnClickListener(this);
     }
 
     @Override
@@ -31,8 +35,14 @@ public class LockDroid extends MINDdroid implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.unlockButton:
 			Log.d("legoitron","unlock button clicked");
-			performActionCommand(ACTION_BUTTON_SHORT);
+			performActionCommand(ACTION_UNLOCK);
 			break;
+		
+	    case R.id.lockButton:
+			Log.d("legoitron","lock button clicked");
+			performActionCommand(ACTION_LOCK);
+			break;
+		
 		}
 	}
 
@@ -42,15 +52,25 @@ public class LockDroid extends MINDdroid implements OnClickListener{
      * @param buttonMode short, long or other press types.
      */
     public void performActionCommand(int buttonMode) {
-        
+        	//84 degrees
       
-			// other robots: 180 degrees forth and back
-			int direction = (buttonMode == ACTION_BUTTON_SHORT ? 1 : -1);
+    	switch (buttonMode) {
+		case ACTION_UNLOCK:
+			Log.d("legoitron","unlock button clicked");
 			sendBTCmessage(BTCommunicator.NO_DELAY, BTCommunicator.MOTOR_A, 
-			    75*direction*1, 0);
-			sendBTCmessage(500, BTCommunicator.MOTOR_A, 
-			    -75*direction*1, 0);
+				    -86, 0);
 			sendBTCmessage(1000, BTCommunicator.MOTOR_A, 0, 0);
+			break;
+		
+	    case ACTION_LOCK:
+			Log.d("legoitron","lock button clicked");
+			sendBTCmessage(BTCommunicator.NO_DELAY, BTCommunicator.MOTOR_A, 
+				    86, 0);
+			sendBTCmessage(1000, BTCommunicator.MOTOR_A, 0, 0);
+			break;
+		
+		}
+    	
 		
     }
 }
