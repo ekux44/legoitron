@@ -3,6 +3,8 @@ legoitron
 
 Automated door locking system built with Lego Mindstorms. Android app + nxt project.
 
+See it in action at http://ekux44.github.com/legoitron/
+
 Inspired by Lockitron. (https://lockitron.com/)
 
 Legoitron source code is licensed under the GPL v3(http://www.gnu.org/licenses/gpl-3.0.html) for personal and non-commercial use. Legoitron contains original code and code reused from the MINDdroid project (https://github.com/NXT/LEGO-MINDSTORMS-MINDdroid). All intellectual property rights belong to their respective owners. 
